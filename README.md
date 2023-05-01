@@ -10,8 +10,10 @@
 ## Result
 
 ![An illustration of image warping](images/illustration_warping.png)
+
 We use image warping process in above to evaluate the quality of the estimated disparity map
 
 ![ The results of image warping](images/imfuse2_8.png)
+
 The right image (event, marked in green) is warped to the
 left (frame, marked in purple) image
