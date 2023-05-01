@@ -10,13 +10,13 @@
 ## Result
 
 <p align="left">
-   <img src="images/illustration_warping.png" alt="An illustration of image warping" width="400"/>
+   <img src="images/illustration_warping.png" alt="An illustration of image warping" width="500"/>
 </p>
 
 We use image warping process in above to evaluate the quality of the estimated disparity map
 
 <p align="left">
-   <img src="images/imfuse2_8.png" alt="The results of image warping" width="400"/>
+   <img src="images/imfuse2_8.png" alt="The results of image warping" width="300"/>
 </p>
 The right image (event, marked in green) is warped to the
 left (frame, marked in purple) image
