@@ -13,7 +13,7 @@
 
 We use image warping process in above to evaluate the quality of the estimated disparity map
 
-![The results of image warping](https://github.com/NannCai/Stereo_Disparity_Estimation/blob/dev/images/imfuse2_8.png)
+![The results of image warping]<https://github.com/NannCai/Stereo_Disparity_Estimation/blob/dev/images/imfuse2_8.png>
 
 The right image (event, marked in green) is warped to the
 left (frame, marked in purple) image
