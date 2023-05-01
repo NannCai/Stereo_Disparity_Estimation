@@ -14,6 +14,8 @@
 We use image warping process in above to evaluate the quality of the estimated disparity map
 
 ![ The results of image warping](images/imfuse2_8.png)
-
+<p align="center">
+   <img src="figures/video_thumbnail.png" alt="Stereo Hybrid Event-Frame (SHEF) Cameras for 3D Perception" width="500"/>
+</p>
 The right image (event, marked in green) is warped to the
 left (frame, marked in purple) image
