@@ -9,9 +9,8 @@
 
 ## Result
 
-![An illustration of image warping](images/illustration_warping.png)
 <p align="left">
-   <img src="images/illustration_warping.png" alt="An illustration of image warping" width="300"/>
+   <img src="images/illustration_warping.png" alt="An illustration of image warping" width="400"/>
 </p>
 
 We use image warping process in above to evaluate the quality of the estimated disparity map
