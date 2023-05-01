@@ -207,6 +207,25 @@ def rectify_visual():
     cv2.imwrite(save_path + 'resized_frame.png', leftImg)
     cv2.imwrite(save_path + 'ev_recon.png', rightImg) 
 
+def resize_img_readme():
+    imfuse_file = '/Users/cainan/Desktop/Stereo_event_Disparity_Estimation/images/imfuse_8.png'
+    imfuse = cv2.imread(imfuse_file)
+    h, w = imfuse.shape[:2]
+    resized_imfuse = cv2.resize(imfuse, (int(w/2),int(h/2)), interpolation=cv2.INTER_AREA)
+
+    illus_file = '/Users/cainan/Desktop/Stereo_event_Disparity_Estimation/images/illustration_warping.png'
+    illustration_warping = cv2.imread(illus_file)
+    h, w = illustration_warping.shape[:2]
+    resized_illustration_warping = cv2.resize(illustration_warping, (int(w/2),int(h/2)), interpolation=cv2.INTER_AREA)
+    # cv2.imshow('new_img', resized_imfuse)
+
+    save_path = '/Users/cainan/Desktop/Stereo_event_Disparity_Estimation/images'
+    save_path = save_path + '/'
+
+    cv2.imwrite(save_path + 'resized_illustration_warping.png', resized_illustration_warping)
+    cv2.imwrite(save_path + 'resized_imfuse2.png',resized_imfuse)
+
+
 if __name__ == '__main__':
 
     # epi_visual()
@@ -214,7 +233,7 @@ if __name__ == '__main__':
     # compare_visual()
     # block_diagram()
     # rectify_visual()
-
+    resize_img_readme()
     print('end')
 
 
