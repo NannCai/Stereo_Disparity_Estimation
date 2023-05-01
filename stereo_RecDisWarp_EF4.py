@@ -20,10 +20,11 @@ load_sobel_rect_warp
 
 def loadEvFrame(show_FLAG = False):
     print('loading Ev Frame...')
-    # ev_imgFile = '/Users/cainan/Desktop/Project/data/processed/origin_rectify/origin105ev_rectified_10.png'
-    ev_imgFile = '/Users/cainan/Desktop/Project/data/processed/cutoff_10/event105.png'
-    # frame_imgFile = '/Users/cainan/Desktop/Project/data/processed/origin_rectify/origin105fr_rectified.png'
-    frame_imgFile = '/Users/cainan/Desktop/Project/data/01_simple/png/105.png'
+    # ev_imgFile = '/Users/cainan/Desktop/Project/data/processed/cutoff_10/event105.png'
+    # frame_imgFile = '/Users/cainan/Desktop/Project/data/01_simple/png/105.png'
+
+    ev_imgFile = './test_data/event105.png'
+    frame_imgFile = './test_data/frame105.png'
 
     leftImageFile = frame_imgFile  # left!!
     rightImageFile = ev_imgFile     # right!!
@@ -114,10 +115,14 @@ def rectifyEF(frame_image, event_image, show_FLAG = False):  # TODO theres two s
 
 def load_lrDisp_EF(show_FLAG = False):
     print('load lrDisp EF')
-    left_disparity_EF_file = '/Users/cainan/Desktop/Project/data/processed/disparity/origin_left_disparity.png'
+    # left_disparity_EF_file = '/Users/cainan/Desktop/Project/data/processed/disparity/origin_left_disparity.png'
+    # right_disparity_EF_file = '/Users/cainan/Desktop/Project/data/processed/disparity/origin_right_disparity.png'
+
+    left_disparity_EF_file = './test_data/origin_left_disparity.png'
+    right_disparity_EF_file = './test_data/origin_right_disparity.png'
     left_disparity_EF = cv2.imread(left_disparity_EF_file,0)
-    right_disparity_EF_file = '/Users/cainan/Desktop/Project/data/processed/disparity/origin_right_disparity.png'
     right_disparity_EF = cv2.imread(right_disparity_EF_file,0)   
+
     if left_disparity_EF is None or right_disparity_EF is None:
         print('Error: Could not load image')
         quit()
@@ -139,7 +144,9 @@ def bgr_fusing(warped_img,rectified_img, show_FLAG = False):
     imfuse2 = np.dstack((green,purple,green))
     # C = cv2.merge((purple,green,purple)) # same as dstack
 
-    save_path = '/Users/cainan/Desktop/Project/data/processed/warped'
+    save_path = './test_data/warped'
+    if not os.path.exists(save_path):
+        os.makedirs(save_path)
     # cv2.imwrite(save_path + '/' + 'sobel_x_frame' + '.png',frame_image_rectified)
 
     if show_FLAG == True:
@@ -147,7 +154,7 @@ def bgr_fusing(warped_img,rectified_img, show_FLAG = False):
         # print(imfuse.shape)
         green = cv2.cvtColor(green,cv2.COLOR_GRAY2BGR)
         combine = cv2.hconcat([green,imfuse,imfuse2])
-        cv2.imshow('green,imfuse,imfuse2',combine)
+        cv2.imshow('warped_img,imfuse,imfuse2',combine)
         k = cv2.waitKey(0)
         if k == 27:         # ESC
             cv2.destroyAllWindows() 
@@ -168,7 +175,7 @@ def load_sobel_rect_warp():
         # loading
         [frame_image, event_image] = loadEvFrame(show_FLAG = False)
 
-    # generate sobel-x frame image  ？ before rectify or after the rectify
+    # sobel-x frame image for compare the result  
     Sobel_x_frame = sobel_x(frame_image, show_FLAG = False)
 
     # rectification 
@@ -184,11 +191,10 @@ def load_sobel_rect_warp():
     [left_disparity_EF,right_disparity_EF] = load_lrDisp_EF(show_FLAG = True)  # use gray frame to compute but use sobel to compare
     warped_img_rl = ut.warp(right_disparity_EF,Q,P2_,event_image_rectified,show_FLAG = True) # better
     warped_img_lr = ut.warp(left_disparity_EF,Q,P2,frame_image_rectified,show_FLAG = True)  # worse
-    # save_path = '/Users/cainan/Desktop/Project/prophesee-automotive-dataset-toolbox-master/visual4report/warp'
-    save_path = '/Users/cainan/Desktop/Project/data/processed/warped/3.20'
+    save_path = './test_data/warped'
     save_path = save_path + '/'
-    # cv2.imwrite(save_path + '8_warped_img_rl.png',warped_img_rl)
-    # cv2.imwrite(save_path + '8_warped_img_lr.png',warped_img_lr)
+    # cv2.imwrite(save_path + 'warped_img_rl.png',warped_img_rl)
+    # cv2.imwrite(save_path + 'warped_img_lr.png',warped_img_lr)
 
     print('end')
 
@@ -196,8 +202,8 @@ def load_sobel_rect_warp():
     # fusing
     imfuse_r2l = bgr_fusing(warped_img_rl,frame_image_rectified,show_FLAG=True)  # real left vs warped left  
     imfuse_l2r = bgr_fusing(warped_img_lr,event_image_rectified,show_FLAG=True)
-    cv2.imwrite(save_path + '8_imfuse_left.png',imfuse_r2l)
-    cv2.imwrite(save_path + '8_imfuse_right.png',imfuse_l2r)
+    cv2.imwrite(save_path + 'imfuse_left.png',imfuse_r2l)
+    cv2.imwrite(save_path + 'imfuse_right.png',imfuse_l2r)
 
 
 

@@ -2,19 +2,17 @@ import numpy as np
 # from src.io.psee_loader import PSEELoader
 import cv2
 import matplotlib.pyplot as plt
+import src.HyStereo.utilities as ut
 
-'''
-until 11.12.2022 google document update 
-'''
 
-def img_normalization(img,percentile_low = 0.05,percentile_high = 99.95):
-    norm_img = img.copy()
-    rmin,rmax = np.percentile(norm_img,(percentile_low,percentile_high))
-    scale = 255/(rmax - rmin)
-    print('min' ,rmin,'max',rmax,'scale',scale)
-    norm_img = (norm_img - rmin) * scale
-    norm_img = np.uint8(norm_img)
-    return norm_img  
+# def img_normalization(img,percentile_low = 0.05,percentile_high = 99.95):
+#     norm_img = img.copy()
+#     rmin,rmax = np.percentile(norm_img,(percentile_low,percentile_high))
+#     scale = 255/(rmax - rmin)
+#     print('min' ,rmin,'max',rmax,'scale',scale)
+#     norm_img = (norm_img - rmin) * scale
+#     norm_img = np.uint8(norm_img)
+#     return norm_img  
 
 def compute_NCC(pre_frame_img,ev_img, template_size):   # input stepsize template_size
     img_height,img_width = pre_frame_img.shape
@@ -137,7 +135,8 @@ def compu_NCC(pre_frame_img,ev_img,template_height = 20):
     # template_height = 20
     template_width = template_height
     disparity_map = compute_NCC(pre_frame_img,ev_img, (template_height,template_width))  
-    disp_norm = img_normalization(disparity_map) 
+    disp_norm = ut.img_normalization(disparity_map)
+    # disp_norm = img_normalization(disparity_map) 
     return disp_norm
 
 def compare_10_120_NCC_SGBM(pre_frame_img,ev_img_10,ev_img_120):
