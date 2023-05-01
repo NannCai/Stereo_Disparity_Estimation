@@ -9,11 +9,11 @@
 
 ## Result
 
-![An illustration of image warping](images/illustration_warping.png = 283x170)
+![An illustration of image warping](images/illustration_warping.png = width="283" height="170")
 
 We use image warping process in above to evaluate the quality of the estimated disparity map
 
-![ The results of image warping](images/imfuse2_8.png =320x240)
+![ The results of image warping](images/imfuse2_8.png width="320" height="240")
 
 The right image (event, marked in green) is warped to the
 left (frame, marked in purple) image
