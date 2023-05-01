@@ -16,7 +16,7 @@ We use image warping process in above to evaluate the quality of the estimated d
 ![ The results of image warping](images/imfuse2_8.png)
 ![ The results of image warping2](https://github.com/NannCai/Stereo_Disparity_Estimation/blob/dev/images/imfuse2_8.png)
 
-<img src=https://github.com/NannCai/Stereo_Disparity_Estimation/blob/dev/images/imfuse2_8.png" width="200" height="200"/><br/>
+<img src=https://github.com/NannCai/Stereo_Disparity_Estimation/blob/dev/images/imfuse2_8.png" width="200" height="200" alt="warping"/>
 
 The right image (event, marked in green) is warped to the
 left (frame, marked in purple) image
